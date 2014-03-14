@@ -1,4 +1,4 @@
-#encoding:gbk
+#encoding:gb2312
 
 import subprocess
 import time

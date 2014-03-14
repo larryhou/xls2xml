@@ -81,7 +81,7 @@ def convert(xls_path):
     for r in range(1):
         for c in range(sheet.ncols):
             value = sheet.cell(r, c).value
-            if not isinstance(value, unicode):                
+            if not isinstance(value, unicode) and value:                
                 value = str(int(value)).decode(decoding)
             cfg.map[c] = value
 
@@ -107,13 +107,15 @@ if __name__=="__main__":
     test(output != None, "XMLÊä³öÄ¿Â¼Îª¿Õ");
     if output[-4:].lower() != ".xml":        
         output = output + "\\" + cfg.name + ".xml"
-
+        
+    print ">>> " + output
+    
     folder = ntpath.abspath(ntpath.split(output)[0])
     if not os.path.exists(folder):
-        os.mkdir(folder)
+        os.makedirs(folder)    
     
     result = "<?xml version='1.0' encoding='utf-8'?>\n" + convert(xls_path)
-    print ">>> " + output + "\t-> size:" + format(len(result), ",")
+    print "" + output + "\t-> size:" + format(len(result), ",")
     
     f = open(output, 'wb')
     f.write(result)
