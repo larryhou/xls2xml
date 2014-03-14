@@ -43,7 +43,6 @@ def excel2xml(sheet, data):
         imap={}
         for c in range(sheet.ncols):
             value = sheet.cell(r,c).value
-            print value, type(value)
             if not isinstance(value, unicode):
                 if isinstance(value, float) and float.is_integer(value):
                     value = int(value)
@@ -112,7 +111,7 @@ if __name__=="__main__":
         output = output + "\\" + cfg.name + ".xml"
 
     result = "<?xml version='1.0' encoding='utf-8'?>\n" + convert(xls_path)
-    print "output: " + output
+    print "output: " + output + "\t-> size:" + str(len(result))
     
     f = open(output, 'wb')
     f.write(result)
