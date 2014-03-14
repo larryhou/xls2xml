@@ -31,4 +31,4 @@ while True:
         print out    
     
 elapse = time.time() - elapse
-print "elapse:" + "{:4.3f}".format(elapse)
+print "elapse:" + "{:4.3f}s".format(elapse)

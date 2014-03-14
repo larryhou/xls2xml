@@ -1,4 +1,4 @@
-#encoding:gbk
+#encoding:gb2312
 
 import sys
 import os
