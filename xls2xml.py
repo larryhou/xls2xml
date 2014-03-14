@@ -30,8 +30,9 @@ class XMLCfg:
 
 def createNode(node, imap):
     data = etree.tostring(node, encoding=encoding)
-    for key in imap.keys():
-        data = data.replace("{" + key.encode(encoding) + "}", imap[key].encode(encoding))        
+    for key in imap.keys():  
+        data = data.replace("{" + key.encode(encoding) + "}", imap[key].encode(encoding))
+        
     node = etree.fromstring(data)
     return node
 
@@ -52,7 +53,7 @@ def excel2xml(sheet, data):
             imap[key] = value
             
         if data.node != None:
-            item = createNode(data.node, imap)
+            item = createNode(data.node.__copy__(), imap)
             root.append(item)
         else:
             item = etree.SubElement(root, "item")
