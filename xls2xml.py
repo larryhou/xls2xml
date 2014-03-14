@@ -43,7 +43,10 @@ def excel2xml(sheet, data):
         imap={}
         for c in range(sheet.ncols):
             value = sheet.cell(r,c).value
+            print value, type(value)
             if not isinstance(value, unicode):
+                if isinstance(value, float) and float.is_integer(value):
+                    value = int(value)
                 value = str(value).decode(decoding)
             
             key = data.map.get(c)
@@ -79,8 +82,8 @@ def convert(xls_path):
     for r in range(1):
         for c in range(sheet.ncols):
             value = sheet.cell(r, c).value
-            if not isinstance(value, unicode):
-                value = str(value).decode(decoding)
+            if not isinstance(value, unicode):                
+                value = str(int(value)).decode(decoding)
             cfg.map[c] = value
 
     root = excel2xml(sheet, cfg)
