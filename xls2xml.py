@@ -52,7 +52,7 @@ def excel2xml(sheet, data):
             imap[key] = value
             
         if data.node != None:
-            item = createNode(data.node.__copy__(), imap)
+            item = createNode(data.node, imap)
             root.append(item)
         else:
             item = etree.SubElement(root, "item")
@@ -105,13 +105,15 @@ if __name__=="__main__":
     cfg = parseXMLCfg(cfg_path)
     
     test(output != None, "XMLÊä³öÄ¿Â¼Îª¿Õ");
-    if output[-4:].lower() != ".xml":
-        if not os.path.exists(output):
-            os.mkdir(output)
+    if output[-4:].lower() != ".xml":        
         output = output + "\\" + cfg.name + ".xml"
 
+    folder = ntpath.abspath(ntpath.split(output)[0])
+    if not os.path.exists(folder):
+        os.mkdir(folder)
+    
     result = "<?xml version='1.0' encoding='utf-8'?>\n" + convert(xls_path)
-    print "output: " + output + "\t-> size:" + str(len(result))
+    print ">>> " + output + "\t-> size:" + format(len(result), ",")
     
     f = open(output, 'wb')
     f.write(result)
