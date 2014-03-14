@@ -112,6 +112,8 @@ if __name__=="__main__":
     print ">>> " + output
     
     folder = ntpath.abspath(ntpath.split(output)[0])
+    folder = folder.replace("\\", "/")
+    
     if not os.path.exists(folder):
         os.makedirs(folder)    
     
