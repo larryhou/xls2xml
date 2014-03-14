@@ -107,7 +107,7 @@ if __name__=="__main__":
     
     test(output != None, "XMLÊä³öÄ¿Â¼Îª¿Õ");
     if output[-4:].lower() != ".xml":        
-        output = output + "\\" + cfg.name + ".xml"
+        output = output + "/" + cfg.name + ".xml"
         
     print ">>> " + output
     
